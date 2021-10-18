@@ -16,7 +16,7 @@ namespace wireless.Pages
  [IgnoreAntiforgeryToken(Order = 1001)]
     public class IndexModel : PageModel
     {
-        private static Dictionary<string, Order> aOrders = null;
+        private static Dictionary<string, Session> aOrders = null;
 
         public ActionResult OnPost()
         {
@@ -24,10 +24,10 @@ namespace wireless.Pages
             string sBody = Request.Form["Body"];
             var oMessage = new Twilio.TwiML.MessagingResponse();
             if(aOrders == null){
-                aOrders = new Dictionary<string, Order>();
+                aOrders = new Dictionary<string, Session>();
             }
             if(!aOrders.ContainsKey(sFrom)){
-                aOrders[sFrom] = new Order();
+                aOrders[sFrom] = new Session();
             }
             oMessage.Message(aOrders[sFrom].OnMessage(sBody));
             return Content(oMessage.ToString(), "application/xml");
