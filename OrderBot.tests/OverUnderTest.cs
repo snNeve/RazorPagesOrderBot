@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using Xunit;
 using OrderBot;
 
@@ -14,28 +15,28 @@ namespace OrderBot.tests
         [Fact]
         public void TestWelcome()
         {
-            Session oSession = new Session();
+            Session oSession = new Session("12345");
             String sInput = oSession.OnMessage("hello");
             Assert.True(sInput.Contains("Welcome"));
         }
         [Fact]
         public void TestShawarama()
         {
-            Session oSession = new Session();
+            Session oSession = new Session("12345");
             String sInput = oSession.OnMessage("hello");
             Assert.True(sInput.ToLower().Contains("shawarama"));
         }
         [Fact]
         public void TestSize()
         {
-            Session oSession = new Session();
+            Session oSession = new Session("12345");
             String sInput = oSession.OnMessage("hello");
             Assert.True(sInput.ToLower().Contains("size"));
         }
         [Fact]
         public void TestLarge()
         {
-            Session oSession = new Session();
+            Session oSession = new Session("12345");
             oSession.OnMessage("hello");
             String sInput = oSession.OnMessage("large");
             Assert.True(sInput.ToLower().Contains("protein"));
@@ -44,7 +45,8 @@ namespace OrderBot.tests
         [Fact]
         public void TestChicken()
         {
-            Session oSession = new Session();
+            string sPath = DB.GetConnectionString();
+            Session oSession = new Session("12345");
             oSession.OnMessage("hello");
             oSession.OnMessage("large");
             String sInput = oSession.OnMessage("chicken");

@@ -27,7 +27,7 @@ namespace wireless.Pages
                 aOrders = new Dictionary<string, Session>();
             }
             if(!aOrders.ContainsKey(sFrom)){
-                aOrders[sFrom] = new Session();
+                aOrders[sFrom] = new Session(sFrom);
             }
             oMessage.Message(aOrders[sFrom].OnMessage(sBody));
             return Content(oMessage.ToString(), "application/xml");

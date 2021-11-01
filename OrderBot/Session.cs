@@ -12,8 +12,9 @@ namespace OrderBot
         private State nCur = State.WELCOMING;
         private Order oOrder;
 
-        public Session(){
+        public Session(string sPhone){
             this.oOrder = new Order();
+            this.oOrder.Phone = sPhone;
         }
 
         public String OnMessage(String sInMessage)
@@ -26,6 +27,7 @@ namespace OrderBot
                     break;
                 case State.SIZE:
                     this.oOrder.Size = sInMessage;
+                    this.oOrder.Save();
                     sMessage = "What protein would you like on this  " + this.oOrder.Size + " Shawarama?";
                     this.nCur = State.PROTEIN;
                     break;
