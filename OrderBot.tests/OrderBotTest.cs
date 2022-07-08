@@ -5,7 +5,7 @@ using OrderBot;
 
 namespace OrderBot.tests
 {
-    public class OverUnderTest
+    public class OrderBotTest
     {
         [Fact]
         public void Test1()
