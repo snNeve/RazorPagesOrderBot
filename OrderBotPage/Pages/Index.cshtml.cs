@@ -36,7 +36,10 @@ namespace OrderBotPage.Pages
             {
                 aOrders[sFrom] = new Session(sFrom);
             }
-            oMessage.Message(aOrders[sFrom].OnMessage(sBody));
+            List<String> aMessages = aOrders[sFrom].OnMessage(sBody);
+            aMessages.ForEach(delegate(String sMessage){
+                oMessage.Message(sMessage);
+            });
             return Content(oMessage.ToString(), "application/xml");
         }
 

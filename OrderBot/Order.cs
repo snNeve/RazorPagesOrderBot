@@ -2,10 +2,10 @@ using Microsoft.Data.Sqlite;
 
 namespace OrderBot
 {
-    public class Order
+    public class Order : ISQLModel
     {
-        private string _size;
-        private string _phone;
+        private string _size = String.Empty;
+        private string _phone = String.Empty;
 
         public string Phone{
             get => _phone;
