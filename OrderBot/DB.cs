@@ -16,7 +16,7 @@ namespace OrderBot
                 for(int nsubs = 1; nsubs < n; nsubs++){ 
                     sResult += Path.DirectorySeparatorChar + subs[nsubs];
                 }
-                string[] aFiles = Directory.GetFiles(sResult, "*.sln", System.IO.SearchOption.TopDirectoryOnly);
+                string[] aFiles = Directory.GetFiles(sResult, "README.md", System.IO.SearchOption.TopDirectoryOnly);
                 if(aFiles.Length > 0){
                     return sPrefix + sResult + sFName;
                 }
