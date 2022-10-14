@@ -25,7 +25,7 @@ namespace OrderBot
             {
                 case State.WELCOMING:
                     aMessages.Add("Welcome to Dental Chatbot!");
-                    aMessages.Add("?");
+                    aMessages.Add("Do you want to book an appointment?");
                     this.nCur = State.SIZE;
                     break;
                 case State.SIZE:
