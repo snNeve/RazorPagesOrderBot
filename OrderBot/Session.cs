@@ -31,14 +31,16 @@ namespace OrderBot
                 case State.BOOK:
                     this.oOrder.Size = sInMessage;
                     this.oOrder.Save();
-                    aMessages.Add("Which date would you like the appointment  " + this.oOrder.Size + " ? ");
+                    aMessages.Add("What service would you like to  " + this.oOrder.Size +  "'regular cleaning', 'withening' or 'checkup'? ");
+                    //aMessages.Add("Which date would you like the appointment  " + this.oOrder.Size + " ? ");
                     this.nCur = State.SERVICE;
                     break;
                 case State.SERVICE:
-                    string sSERVICE = sInMessage;
-                    aMessages.Add("What service would you like to  " + this.oOrder.Size + " on " + sSERVICE + " - 'regular cleaning', 'withening' or 'checkup'? ");
+                    string sSERVICE = this.oOrder.Service = sInMessage;
+                    this.oOrder.Save();
+                    aMessages.Add("Which date would you like the appointment  " + this.oOrder.Size + " ? ");
                     break;
-
+                    
             }
             aMessages.ForEach(delegate (String sMessage)
             {

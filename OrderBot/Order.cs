@@ -6,6 +6,7 @@ namespace OrderBot
     {
         private string _size = String.Empty;
         private string _phone = String.Empty;
+        private string _service = String.Empty;
 
         public string Phone{
             get => _phone;
@@ -15,6 +16,10 @@ namespace OrderBot
         public string Size{
             get => _size;
             set => _size = value;
+        }
+        public string Service{
+            get => _service;
+            set => _service = value;
         }
 
         public void Save(){
@@ -26,21 +31,23 @@ namespace OrderBot
                 commandUpdate.CommandText =
                 @"
         UPDATE orders
-        SET size = $size
+        SET size = $size, service = $service
         WHERE phone = $phone
     ";
                 commandUpdate.Parameters.AddWithValue("$size", Size);
                 commandUpdate.Parameters.AddWithValue("$phone", Phone);
+                commandUpdate.Parameters.AddWithValue("$service", Service);
                 int nRows = commandUpdate.ExecuteNonQuery();
                 if(nRows == 0){
                     var commandInsert = connection.CreateCommand();
                     commandInsert.CommandText =
                     @"
-            INSERT INTO orders(size, phone)
-            VALUES($size, $phone)
+            INSERT INTO orders(size, phone, service)
+            VALUES($size, $phone, $service)
         ";
                     commandInsert.Parameters.AddWithValue("$size", Size);
                     commandInsert.Parameters.AddWithValue("$phone", Phone);
+                    commandInsert.Parameters.AddWithValue("$service", Service);
                     int nRowsInserted = commandInsert.ExecuteNonQuery();
 
                 }
