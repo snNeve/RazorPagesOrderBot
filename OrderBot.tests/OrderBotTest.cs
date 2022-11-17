@@ -20,39 +20,39 @@ namespace OrderBot.tests
             Assert.True(sInput.Contains("Welcome"));
         }
         [Fact]
-        public void TestShawarama()
+        public void TestDental()
         {
             Session oSession = new Session("12345");
             String sInput = oSession.OnMessage("hello")[0];
-            Assert.True(sInput.ToLower().Contains("shawarama"));
+            Assert.True(sInput.ToLower().Contains("dental"));
         }
         [Fact]
-        public void TestSize()
+        public void TestAppointment()
         {
             Session oSession = new Session("12345");
             String sInput = oSession.OnMessage("hello")[1];
-            Assert.True(sInput.ToLower().Contains("size"));
+            Assert.True(sInput.ToLower().Contains("appointment"));
         }
         [Fact]
-        public void TestLarge()
+        public void TestBook()
         {
             Session oSession = new Session("12345");
             oSession.OnMessage("hello");
-            String sInput = oSession.OnMessage("large")[0];
-            Assert.True(sInput.ToLower().Contains("protein"));
-            Assert.True(sInput.ToLower().Contains("large"));
+            String sInput = oSession.OnMessage("book")[0];
+            Assert.True(sInput.ToLower().Contains("service"));
+            Assert.True(sInput.ToLower().Contains("checkup"));
         }
         [Fact]
-        public void TestChicken()
+        public void TestService()
         {
             string sPath = DB.GetConnectionString();
             Session oSession = new Session("12345");
             oSession.OnMessage("hello");
-            oSession.OnMessage("large");
-            String sInput = oSession.OnMessage("chicken")[0];
-            Assert.True(sInput.ToLower().Contains("toppings"));
-            Assert.True(sInput.ToLower().Contains("large"));
-            Assert.True(sInput.ToLower().Contains("chicken"));
+            oSession.OnMessage("book");
+            String sInput = oSession.OnMessage("checkup")[0];
+            Assert.True(sInput.ToLower().Contains("date"));
+            Assert.True(sInput.ToLower().Contains("appointment"));
+            Assert.True(sInput.ToLower().Contains("booked"));
         }
     }
 }

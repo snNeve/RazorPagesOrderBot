@@ -1,2 +1,2 @@
 -- SQLite
-ALTER TABLE orders ADD service VARCHAR
+alter table orders add appointment VARCHAR
