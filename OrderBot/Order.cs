@@ -5,7 +5,7 @@ namespace OrderBot
     public class Order : ISQLModel
     {
         private string _appointment = String.Empty;
-        private string _size = String.Empty;
+        //private string _size = String.Empty;
         private string _phone = String.Empty;
         private string _service = String.Empty;
 
@@ -14,10 +14,10 @@ namespace OrderBot
             set => _phone = value;
         }
 
-        public string Size{
-            get => _size;
-            set => _size = value;
-        }
+       // public string Size{
+        //    get => _size;
+        //    set => _size = value;
+       // }
         public string Service{
             get => _service;
             set => _service = value;
