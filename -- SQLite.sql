@@ -1,7 +1,7 @@
 -- SQLite
-SELECT phone,  appointment, service
+SELECT *
 FROM orders;
 
-alter table orders drop column size
+alter table orders add column datetime varchar;
 
-select * from orders
+alter table orders drop column datetime;

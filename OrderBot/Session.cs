@@ -6,7 +6,7 @@ namespace OrderBot
     {
         private enum State
         {
-            WELCOMING, BOOK, SERVICE, Appointment
+            WELCOMING, BOOK, SERVICE, Appointment, DATETIME, ENDMESSAGE
         }
 
         private State nCur = State.WELCOMING;
@@ -39,8 +39,14 @@ namespace OrderBot
                     string sSERVICE = this.oOrder.Service = sInMessage;
                     this.oOrder.Save();
                     aMessages.Add("Which date would you like the appointment  " + this.oOrder.Appointment + "ed? ");
+                    this.nCur = State.DATETIME;
                     break;
-                    
+                case State.DATETIME:
+                    this.oOrder.Datetime = sInMessage;
+                    this.oOrder.Save();
+                    aMessages.Add("Appointment Booked on  " + this.oOrder.Datetime);
+                    aMessages.Add("See you on " + this.oOrder.Datetime + " . Bye");
+                    break;
             }
             aMessages.ForEach(delegate (String sMessage)
             {
